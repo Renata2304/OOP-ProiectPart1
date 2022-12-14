@@ -2,12 +2,21 @@ package input;
 
 public class Credentials {
     private String name;
-    private String password;;
+    private String password;
     private String accountType;
     private String country;
     private String balance;
 
     public Credentials(){
+    }
+
+    public Credentials(String name, String password, String accountType,
+                       String country, String balance) {
+        this.name = name;
+        this.password = password;
+        this.accountType = accountType;
+        this.country = country;
+        this.balance = balance;
     }
 
     public String getName() {
