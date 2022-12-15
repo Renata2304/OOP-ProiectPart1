@@ -27,10 +27,14 @@ public class Errors extends Actions {
                 return nextPage.equals("register");
             }
             case "homepage autentificat", "movies", "see details", "upgrades" -> {
-                if (!nextPage.equals("login")) {
-                    return !nextPage.equals("register");
+//                if (!nextPage.equals("login")) {
+//                    return !nextPage.equals("register");
+//                }
+//                return false;
+                if (nextPage.equals("login") || nextPage.equals(("register"))) {
+                    return false;
                 }
-                return false;
+                return true;
             }
             default -> {
                 return true;
