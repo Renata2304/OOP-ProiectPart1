@@ -7,7 +7,7 @@ class Filters {
     Sort sort = new Sort();
     Contains contains = new Contains();
 
-    public Filters(Sort sort, Contains contains) {
+    public Filters(final Sort sort, final Contains contains) {
         this.sort = sort;
         this.contains = contains;
     }
@@ -20,7 +20,7 @@ class Filters {
             return rating;
         }
 
-        public void setRating(String rating) {
+        public void setRating(final String rating) {
             this.rating = rating;
         }
 
@@ -28,7 +28,7 @@ class Filters {
             return duration;
         }
 
-        public void setDuration(String duration) {
+        public void setDuration(final String duration) {
             this.duration = duration;
         }
     }
@@ -41,7 +41,7 @@ class Filters {
             return actors;
         }
 
-        public void setActors(ArrayList<String> actors) {
+        public void setActors(final ArrayList<String> actors) {
             this.actors = actors;
         }
 
@@ -49,11 +49,9 @@ class Filters {
             return genre;
         }
 
-        public void setGenre(ArrayList<String> genre) {
+        public void setGenre(final ArrayList<String> genre) {
             this.genre = genre;
         }
     }
-
-
 
 }

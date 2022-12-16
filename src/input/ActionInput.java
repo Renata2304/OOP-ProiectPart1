@@ -6,12 +6,13 @@ public final class ActionInput {
 
     private String type;
     private String page;
-    private Credentials credentials;
+    private String movie;
     private String feature;
-    private String count;
-    private String startWith;
+    private Credentials credentials;
+    private String startsWith;
     private Filters filters;
-
+    private String count;
+    private int rate;
     public ActionInput() {
 
     }
@@ -20,7 +21,7 @@ public final class ActionInput {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(final String type) {
         this.type = type;
     }
 
@@ -28,7 +29,7 @@ public final class ActionInput {
         return page;
     }
 
-    public void setPage(String page) {
+    public void setPage(final String page) {
         this.page = page;
     }
 
@@ -36,7 +37,7 @@ public final class ActionInput {
         return credentials;
     }
 
-    public void setCredentials(Credentials credentials) {
+    public void setCredentials(final Credentials credentials) {
         this.credentials = credentials;
     }
 
@@ -44,7 +45,7 @@ public final class ActionInput {
         return feature;
     }
 
-    public void setFeature(String feature) {
+    public void setFeature(final String feature) {
         this.feature = feature;
     }
 
@@ -52,7 +53,7 @@ public final class ActionInput {
         return filters;
     }
 
-    public void setFilters(Filters filters) {
+    public void setFilters(final Filters filters) {
         this.filters = filters;
     }
 
@@ -60,15 +61,31 @@ public final class ActionInput {
         return count;
     }
 
-    public void setCount(String count) {
+    public void setCount(final String count) {
         this.count = count;
     }
 
-    public String getStartWith() {
-        return startWith;
+    public String getStartsWith() {
+        return startsWith;
     }
 
-    public void setStartWith(String startWith) {
-        this.startWith = startWith;
+    public void setStartsWith(final String startWith) {
+        this.startsWith = startWith;
+    }
+
+    public String getMovie() {
+        return movie;
+    }
+
+    public void setMovie(String movie) {
+        this.movie = movie;
+    }
+
+    public int getRate() {
+        return rate;
+    }
+
+    public void setRate(int rate) {
+        this.rate = rate;
     }
 }

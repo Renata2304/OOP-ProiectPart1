@@ -1,7 +1,6 @@
-package Pages;
+package pages;
 
-public class Movies {
-
+public class Movies extends Page{
     private static Movies instance = null;
 
     private Movies() {}

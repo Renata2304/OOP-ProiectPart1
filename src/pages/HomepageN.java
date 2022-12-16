@@ -1,8 +1,6 @@
-package Pages;
+package pages;
 
 public class HomepageN extends Page{
-
-
 
     public class Login {
 

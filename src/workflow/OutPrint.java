@@ -12,6 +12,12 @@ public class OutPrint {
 
     private OutPrint(){}
 
+    /**
+     *
+     * @param objectMapper
+     * @param user
+     * @param output
+     */
     public static void printCurrentUser(final ObjectMapper objectMapper,
                                         final UserInput user, final ObjectNode output) {
         ObjectNode currentUsers = objectMapper.createObjectNode();
@@ -54,12 +60,15 @@ public class OutPrint {
             }
         }
 
-        output.put("currentUser", currentUsers);
+        output.putPOJO("currentUser", currentUsers);
     }
 
+    /**
+     *
+     * @param movie
+     * @param allMoviesNode
+     */
     public static void printMovie(final MovieInput movie, ArrayNode allMoviesNode) {
-
-
         ObjectNode movieNode = allMoviesNode.addObject();
         movieNode.put("name", movie.getName());
         movieNode.put("year", movie.getYear());
@@ -82,6 +91,11 @@ public class OutPrint {
         }
     }
 
+    /**
+     *
+     * @param movies
+     * @param output
+     */
     public static void printCurrentMoviesList(final ArrayList<MovieInput> movies,
                                               final ObjectNode output) {
         if (movies == null) {
@@ -95,6 +109,10 @@ public class OutPrint {
         }
     }
 
+    /**
+     *
+     * @param output
+     */
     public static void printError(ArrayNode output) {
         ObjectNode outputNode = output.addObject();
         outputNode.putPOJO("error", "Error");

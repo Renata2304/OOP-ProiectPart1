@@ -1,4 +1,4 @@
-package Pages;
+package pages;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
@@ -15,10 +15,21 @@ import java.util.Objects;
 
 public class Register extends Page{
 
-    public static UserInput registerOnPage(final Input inputData, final ActionInput action,
-                                      final ArrayNode output, final ObjectMapper objectMapper,
-                                      final Page crtPage, UserInput crtUser,
-                                      ArrayList<MovieInput> crtMovies) {
+    private static Register instance = null;
+
+    private Register() {}
+
+    public static Register getRegister() {
+        if (instance == null) {
+            instance = new Register();
+        }
+        return instance;
+    }
+
+    @Override
+    public UserInput onPage(Input inputData, ActionInput action, ArrayNode output,
+                            ObjectMapper objectMapper, Page crtPage, UserInput crtUser,
+                            ArrayList<MovieInput> crtMovies) {
         boolean ok = true;
         for (UserInput user : inputData.getUsers()) {
             if (Objects.equals(user.getCredentials().getName(),
@@ -45,8 +56,8 @@ public class Register extends Page{
         return crtUser;
     }
 
-    public static void registerChangePage(final ArrayNode output, final ActionInput action,
-                                          final Page crtPage) {
+    @Override
+    public void changePage(ArrayNode output, ActionInput action, Page crtPage) {
         boolean ok = Errors.checkErrorChangePage(crtPage.getPageType(), action);
         if (ok) {
             crtPage.setPageType("register");
@@ -54,4 +65,5 @@ public class Register extends Page{
             OutPrint.printError(output);
         }
     }
+
 }

@@ -4,14 +4,11 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import input.ActionInput;
 
+import java.util.Objects;
+
 public class Errors extends Actions {
 
     public Errors() {
-    }
-
-    public static void printError(ArrayNode output) {
-        ObjectMapper objectMapper = new ObjectMapper();
-
     }
 
     public static boolean checkErrorChangePage(final String currPage, final ActionInput action) {
@@ -27,11 +24,7 @@ public class Errors extends Actions {
                 return nextPage.equals("register");
             }
             case "homepage autentificat", "movies", "see details", "upgrades" -> {
-//                if (!nextPage.equals("login")) {
-//                    return !nextPage.equals("register");
-//                }
-//                return false;
-                if (nextPage.equals("login") || nextPage.equals(("register"))) {
+                if (Objects.equals(nextPage, "login") || nextPage.equals("register")) {
                     return false;
                 }
                 return true;
@@ -42,24 +35,26 @@ public class Errors extends Actions {
         }
     }
 
-    public static boolean checkFeatureOnPage(final String currPage, final ActionInput action) {
-        if (currPage.equals("login") && action.getFeature().equals("login")) {
+    public static boolean checkErrorFeatureOnPage(final String currPage,
+                                                  final ActionInput action) {
+        if (currPage.equals("login") && Objects.equals(action.getFeature(), "login")) {
             return true;
         }
-        if (currPage.equals("register") && action.getFeature().equals("register")) {
+        if (currPage.equals("register") && Objects.equals(action.getFeature(), "register")) {
             return true;
         }
-        if (currPage.equals("movies") && (action.getFeature().equals("search")
-            || action.getFeature().equals("filter"))) {
+        if (currPage.equals("movies") && (Objects.equals(action.getFeature(), "search")
+            || Objects.equals(action.getFeature(), "filter"))) {
             return true;
         }
-        if (currPage.equals("upgrades") && (action.getFeature().equals("buy tokens")
-            || action.getFeature().equals("buy premium account"))) {
+        if (currPage.equals("upgrades") && (Objects.equals(action.getFeature(), "buy tokens")
+            || Objects.equals(action.getFeature(), "buy premium account"))) {
             return true;
         }
-        if (currPage.equals("see details") && (action.getFeature().equals("purchase")
-            || action.getFeature().equals("watch") || action.getFeature().equals("like")
-                || action.getFeature().equals("rate"))) {
+        if (currPage.equals("see details") && (Objects.equals(action.getFeature(), "purchase")
+                || Objects.equals(action.getFeature(), "watch")
+                || Objects.equals(action.getFeature(), "like")
+                || Objects.equals(action.getFeature(), "rate"))) {
             return true;
         }
         return false;
