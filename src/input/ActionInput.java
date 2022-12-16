@@ -1,7 +1,5 @@
 package input;
 
-import java.util.ArrayList;
-
 public final class ActionInput {
 
     private String type;
@@ -10,10 +8,11 @@ public final class ActionInput {
     private String feature;
     private Credentials credentials;
     private String startsWith;
-    private Filters filters;
+    private Filter filters;
     private String count;
     private int rate;
-    public ActionInput() {
+
+    private ActionInput() {
 
     }
 
@@ -49,11 +48,11 @@ public final class ActionInput {
         this.feature = feature;
     }
 
-    public Filters getFilters() {
+    public Filter getFilters() {
         return filters;
     }
 
-    public void setFilters(final Filters filters) {
+    public void setFilters(Filter filters) {
         this.filters = filters;
     }
 

@@ -7,6 +7,7 @@ import com.fasterxml.jackson.databind.node.ArrayNode;
 import input.*;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Actions{
 
@@ -47,31 +48,38 @@ public class Actions{
                             OutPrint.printCurrentMoviesList(search, outputNode);
                             OutPrint.printCurrentUser(objectMapper, crtUser, outputNode);
                         }
+                        case "filter"-> {
+                            crtMovies.sort((o2, o1) -> Double.
+                                    compare(o1.getDuration(), o2.getDuration()));
+                            crtMovies.sort((o2, o1) -> Double.
+                                    compare(o1.getRating(), o2.getRating()));
+
+                            ObjectNode outputNode = output.addObject();
+                            outputNode.putPOJO("error", null);
+                            OutPrint.printCurrentMoviesList(crtMovies, outputNode);
+                            OutPrint.printCurrentUser(objectMapper, crtUser, outputNode);
+                        }
                         default -> {
                         }
                     }
                 }
                 case "change page"-> {
-                    switch (action.getPage()) {
-                        case "register"-> {
-                            pages.Register.getRegister().changePage(output, action, crtPage);
-                        }
-                        case "login"-> {
-                            pages.Login.getLogin().changePage(output, action, crtPage);
-                        }
-                        case "logout"-> {
-                            boolean ok = Errors.checkErrorChangePage(crtPage.getPageType(),
-                                                                     action);
-                            if (ok) {
-                                crtPage.setPageType("homepage neautentificat");
-                            } else {
-                                OutPrint.printError(output);
+                    boolean ok = Errors.checkErrorChangePage(crtPage.getPageType(),
+                            action);
+                    if (!ok) {
+                        OutPrint.printError(output);
+                    } else {
+                        switch (action.getPage()) {
+                            case "register" -> {
+                                pages.Register.getRegister().changePage(output, action, crtPage);
                             }
-                        }
-                        case "movies"-> {
-                            boolean ok = Errors.checkErrorChangePage(crtPage.getPageType(),
-                                    action);
-                            if (ok) {
+                            case "login" -> {
+                                pages.Login.getLogin().changePage(output, action, crtPage);
+                            }
+                            case "logout" -> {
+                                crtPage.setPageType("homepage neautentificat");
+                            }
+                            case "movies" -> {
                                 for (MovieInput movie : inputData.getMovies()) {
                                     if (!movie.getCountriesBanned().
                                             contains(crtUser.getCredentials().getCountry())) {
@@ -83,11 +91,13 @@ public class Actions{
                                 OutPrint.printCurrentMoviesList(crtMovies, outputNode);
                                 OutPrint.printCurrentUser(objectMapper, crtUser, outputNode);
                                 crtPage.setPageType("movies");
-                            } else {
-                                OutPrint.printError(output);
                             }
-                        }
-                        default -> {
+                            case "see details" -> {
+
+                            }
+
+                            default -> {
+                            }
                         }
                     }
                 }
