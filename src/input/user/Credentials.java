@@ -1,4 +1,4 @@
-package input;
+package input.user;
 
 public final class Credentials {
     private String name;
@@ -8,15 +8,6 @@ public final class Credentials {
     private String balance = "200";
 
     public Credentials() {
-    }
-
-    public Credentials(String name, String password, String accountType,
-                       String country, String balance) {
-        this.name = name;
-        this.password = password;
-        this.accountType = accountType;
-        this.country = country;
-        this.balance = balance;
     }
 
     public String getName() {

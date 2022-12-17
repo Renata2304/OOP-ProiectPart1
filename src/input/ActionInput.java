@@ -1,5 +1,8 @@
 package input;
 
+import input.filter.Filter;
+import input.user.Credentials;
+
 public final class ActionInput {
 
     private String type;
@@ -52,7 +55,7 @@ public final class ActionInput {
         return filters;
     }
 
-    public void setFilters(Filter filters) {
+    public void setFilters(final Filter filters) {
         this.filters = filters;
     }
 
@@ -76,7 +79,7 @@ public final class ActionInput {
         return movie;
     }
 
-    public void setMovie(String movie) {
+    public void setMovie(final String movie) {
         this.movie = movie;
     }
 
@@ -84,7 +87,7 @@ public final class ActionInput {
         return rate;
     }
 
-    public void setRate(int rate) {
+    public void setRate(final int rate) {
         this.rate = rate;
     }
 }

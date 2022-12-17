@@ -1,5 +1,7 @@
 package input;
 
+import input.user.UserInput;
+
 import java.util.ArrayList;
 
 public final class Input {
@@ -8,7 +10,9 @@ public final class Input {
     private ArrayList<MovieInput> movies;
     private ArrayList<ActionInput> actions;
 
-    public Input() {}
+    public Input() {
+
+    }
 
     public ArrayList<UserInput> getUsers() {
         return users;

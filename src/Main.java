@@ -7,7 +7,17 @@ import workflow.Actions;
 import java.io.File;
 import java.io.IOException;
 
-public class Main {
+public final class Main {
+
+    private Main() {
+
+    }
+
+    /**
+     *
+     * @param args
+     * @throws IOException
+     */
     public static void main(final String[] args) throws IOException {
 
         ObjectMapper objectMapper = new ObjectMapper();
@@ -20,4 +30,5 @@ public class Main {
         ObjectWriter objectWriter = objectMapper.writerWithDefaultPrettyPrinter();
         objectWriter.writeValue(new File(args[1]), output);
     }
+
 }

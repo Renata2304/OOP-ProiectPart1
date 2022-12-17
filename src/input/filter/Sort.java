@@ -1,4 +1,4 @@
-package input;
+package input.filter;
 
 public final class Sort {
     private String rating;

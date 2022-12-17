@@ -4,19 +4,30 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import input.MovieInput;
-import input.UserInput;
+import input.user.UserInput;
 
 import java.util.ArrayList;
 
-public class OutPrint {
+public final class OutPrint {
 
-    private OutPrint(){}
+    private OutPrint() {
+
+    }
 
     /**
-     *
-     * @param objectMapper
-     * @param user
-     * @param output
+     * Prints all the parameters if no error occurred.
+     */
+    public static void printNoError(final ObjectMapper objectMapper, final ArrayNode output,
+                                    final UserInput crtUser,
+                                    final ArrayList<MovieInput> crtMovies) {
+        ObjectNode outputNode = output.addObject();
+        outputNode.putPOJO("error", null);
+        OutPrint.printCurrentMoviesList(crtMovies, outputNode);
+        OutPrint.printCurrentUser(objectMapper, crtUser, outputNode);
+    }
+
+    /**
+     * Prints the current user's fields.
      */
     public static void printCurrentUser(final ObjectMapper objectMapper,
                                         final UserInput user, final ObjectNode output) {
@@ -64,18 +75,17 @@ public class OutPrint {
     }
 
     /**
-     *
-     * @param movie
-     * @param allMoviesNode
+     * Prints a single movie's fields.
      */
-    public static void printMovie(final MovieInput movie, ArrayNode allMoviesNode) {
+    public static void printMovie(final MovieInput movie, final ArrayNode allMoviesNode) {
         ObjectNode movieNode = allMoviesNode.addObject();
         movieNode.put("name", movie.getName());
         movieNode.put("year", movie.getYear());
         movieNode.put("duration", movie.getDuration());
         movieNode.put("numLikes", movie.getNumLikes());
+        // different printing, based on the rating number
         if (movie.getNumRatings() != 0) {
-            movieNode.put("rating", movie.getRating()/movie.getNumRatings());
+            movieNode.put("rating", movie.getRating() / movie.getNumRatings());
         } else {
             movieNode.put("rating", movie.getRating());
         }
@@ -96,9 +106,7 @@ public class OutPrint {
     }
 
     /**
-     *
-     * @param movies
-     * @param output
+     * Prints the current movie list's fields, one movie at a time.
      */
     public static void printCurrentMoviesList(final ArrayList<MovieInput> movies,
                                               final ObjectNode output) {
@@ -114,10 +122,9 @@ public class OutPrint {
     }
 
     /**
-     *
-     * @param output
+     * Prints the output of an error occurred.
      */
-    public static void printError(ArrayNode output) {
+    public static void printError(final ArrayNode output) {
         ObjectNode outputNode = output.addObject();
         outputNode.putPOJO("error", "Error");
         OutPrint.printCurrentMoviesList(new ArrayList<MovieInput>(),

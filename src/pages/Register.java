@@ -6,19 +6,25 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 import input.ActionInput;
 import input.Input;
 import input.MovieInput;
-import input.UserInput;
+import input.user.UserInput;
 import workflow.Errors;
 import workflow.OutPrint;
 
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class Register extends Page{
+public final class Register extends Page {
 
     private static Register instance = null;
 
-    private Register() {}
+    Register() {
 
+    }
+
+    /**
+     * Function used for creating the singleton in the Login class.
+     * @return the instance used for singleton
+     */
     public static Register getRegister() {
         if (instance == null) {
             instance = new Register();
@@ -26,11 +32,18 @@ public class Register extends Page{
         return instance;
     }
 
+    /**
+     * Function used for the case when a user is trying to register.
+     * @return the current user that is going to be returned, if the action is finished
+     * successfully or null otherwise (+ an error will be printed).
+     */
     @Override
-    public UserInput onPage(Input inputData, ActionInput action, ArrayNode output,
-                            ObjectMapper objectMapper, Page crtPage, UserInput crtUser,
-                            ArrayList<MovieInput> crtMovies) {
+    public UserInput initialOnPage(final Input inputData, final ActionInput action,
+                            final ArrayNode output, final ObjectMapper objectMapper,
+                            final Page crtPage, UserInput crtUser,
+                            final ArrayList<MovieInput> crtMovies) {
         boolean ok = true;
+        // searching to see if the user already exists
         for (UserInput user : inputData.getUsers()) {
             if (Objects.equals(user.getCredentials().getName(),
                     action.getCredentials().getName())) {
@@ -39,6 +52,8 @@ public class Register extends Page{
             }
         }
         if (ok) {
+            // if the user doesn't already exist, a new user will be created and added
+            // to the users list.
             crtPage.setPageType("homepage autentificat");
             UserInput newUser = new UserInput(action.getCredentials());
             inputData.getUsers().add(newUser);
@@ -49,6 +64,7 @@ public class Register extends Page{
             OutPrint.printCurrentUser(objectMapper, crtUser, outputNode);
 
         } else {
+            // the user already exists, so an error will be printed
             OutPrint.printError(output);
             crtPage.setPageType("homepage neautentificat");
         }
@@ -56,12 +72,18 @@ public class Register extends Page{
         return crtUser;
     }
 
+    /**
+     * Function used for the case change page -> login. If the action is finished successfully, the
+     * page type will be changed, otherwise an error will be printed.
+     */
     @Override
-    public void changePage(ArrayNode output, ActionInput action, Page crtPage) {
+    public void changePage(final ArrayNode output, final ActionInput action, final Page crtPage) {
         boolean ok = Errors.checkErrorChangePage(crtPage.getPageType(), action);
         if (ok) {
+            // if the action is finished successfully, the page type will be changed to register
             crtPage.setPageType("register");
         } else {
+            // if an error occurred
             OutPrint.printError(output);
         }
     }

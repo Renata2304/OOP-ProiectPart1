@@ -2,7 +2,7 @@ package input;
 
 import java.util.ArrayList;
 
-public class MovieInput {
+public final class MovieInput {
     private String name;
     private int year;
     private int duration;
@@ -91,7 +91,7 @@ public class MovieInput {
         return isPurchased;
     }
 
-    public void setPurchased(boolean purchased) {
+    public void setPurchased(final boolean purchased) {
         isPurchased = purchased;
     }
 
@@ -99,7 +99,7 @@ public class MovieInput {
         return isWatched;
     }
 
-    public void setWatched(boolean watched) {
+    public void setWatched(final boolean watched) {
         isWatched = watched;
     }
 }

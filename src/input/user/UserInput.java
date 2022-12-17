@@ -1,23 +1,25 @@
-package input;
+package input.user;
+
+import input.Const;
+import input.MovieInput;
 
 import java.util.ArrayList;
 
 public final class UserInput {
     private Credentials credentials;
     private int tokenCount = 0;
-    private int numFreePremiumMovies = 15;
+    private int numFreePremiumMovies = Const.FREE_PREMIUM_MOVIES;
     private ArrayList<MovieInput> purchasedMovies = new ArrayList<>();
     private ArrayList<MovieInput> watchedMovies = new ArrayList<>();
     private ArrayList<MovieInput> likedMovies = new ArrayList<>();
     private ArrayList<MovieInput> ratedMovies = new ArrayList<>();
     private MovieInput currentMovie = new MovieInput();
 
-
     public UserInput() {
 
     }
 
-    public UserInput(Credentials credentials) {
+    public UserInput(final Credentials credentials) {
         this.credentials = credentials;
     }
 
@@ -81,7 +83,7 @@ public final class UserInput {
         return currentMovie;
     }
 
-    public void setCurrentMovie(MovieInput currentMovie) {
+    public void setCurrentMovie(final MovieInput currentMovie) {
         this.currentMovie = currentMovie;
     }
 }

@@ -1,4 +1,4 @@
-package input;
+package input.filter;
 
 import java.util.ArrayList;
 

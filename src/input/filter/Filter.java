@@ -1,11 +1,9 @@
-package input;
+package input.filter;
 
-import java.util.ArrayList;
+public final class Filter {
 
-public class Filter {
-
+    // constructor for filter cases
     private Filter() {
-
     }
 
     private Sort sort;
@@ -15,7 +13,7 @@ public class Filter {
         return sort;
     }
 
-    public void setSort(Sort sort) {
+    public void setSort(final Sort sort) {
         this.sort = sort;
     }
 
@@ -23,7 +21,7 @@ public class Filter {
         return contains;
     }
 
-    public void setContains(Contains contains) {
+    public void setContains(final Contains contains) {
         this.contains = contains;
     }
 
