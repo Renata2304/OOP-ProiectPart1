@@ -5,7 +5,7 @@ public final class Credentials {
     private String password;
     private String accountType;
     private String country;
-    private String balance;
+    private String balance = "200";
 
     public Credentials() {
     }

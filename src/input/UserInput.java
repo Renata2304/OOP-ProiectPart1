@@ -4,12 +4,14 @@ import java.util.ArrayList;
 
 public final class UserInput {
     private Credentials credentials;
-    private int tokenCount;
+    private int tokenCount = 0;
     private int numFreePremiumMovies = 15;
-    private ArrayList<MovieInput> purchasedMovies;
-    private ArrayList<MovieInput> watchedMovies;
-    private ArrayList<MovieInput> likedMovies;
-    private ArrayList<MovieInput> ratedMovies;
+    private ArrayList<MovieInput> purchasedMovies = new ArrayList<>();
+    private ArrayList<MovieInput> watchedMovies = new ArrayList<>();
+    private ArrayList<MovieInput> likedMovies = new ArrayList<>();
+    private ArrayList<MovieInput> ratedMovies = new ArrayList<>();
+    private MovieInput currentMovie = new MovieInput();
+
 
     public UserInput() {
 
@@ -73,5 +75,13 @@ public final class UserInput {
 
     public void setRatedMovies(final ArrayList<MovieInput> ratedMovies) {
         this.ratedMovies = ratedMovies;
+    }
+
+    public MovieInput getCurrentMovie() {
+        return currentMovie;
+    }
+
+    public void setCurrentMovie(MovieInput currentMovie) {
+        this.currentMovie = currentMovie;
     }
 }

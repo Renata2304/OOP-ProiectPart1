@@ -74,7 +74,11 @@ public class OutPrint {
         movieNode.put("year", movie.getYear());
         movieNode.put("duration", movie.getDuration());
         movieNode.put("numLikes", movie.getNumLikes());
-        movieNode.put("rating", movie.getRating());
+        if (movie.getNumRatings() != 0) {
+            movieNode.put("rating", movie.getRating()/movie.getNumRatings());
+        } else {
+            movieNode.put("rating", movie.getRating());
+        }
         movieNode.put("numRatings", movie.getNumRatings());
 
         ArrayNode genresNode = movieNode.putArray("genres");

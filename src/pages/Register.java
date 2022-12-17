@@ -45,8 +45,8 @@ public class Register extends Page{
             crtUser = newUser;
             ObjectNode outputNode = output.addObject();
             outputNode.putPOJO("error", null);
-            OutPrint.printCurrentUser(objectMapper, crtUser, outputNode);
             OutPrint.printCurrentMoviesList(crtMovies, outputNode);
+            OutPrint.printCurrentUser(objectMapper, crtUser, outputNode);
 
         } else {
             OutPrint.printError(output);

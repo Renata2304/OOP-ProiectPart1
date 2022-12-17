@@ -3,10 +3,13 @@ package workflow;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import input.ActionInput;
+import input.Input;
+import input.MovieInput;
 
+import java.util.ArrayList;
 import java.util.Objects;
 
-public class Errors extends Actions {
+public class Errors {
 
     public Errors() {
     }
@@ -23,7 +26,15 @@ public class Errors extends Actions {
                 }
                 return nextPage.equals("register");
             }
-            case "homepage autentificat", "movies", "see details", "upgrades" -> {
+            case "movies" -> {
+                if (Objects.equals(nextPage, "upgrades")
+                        || Objects.equals(nextPage, "login")
+                        || nextPage.equals("register")) {
+                    return false;
+                }
+                return true;
+            }
+            case "homepage autentificat", "see details", "upgrades" -> {
                 if (Objects.equals(nextPage, "login") || nextPage.equals("register")) {
                     return false;
                 }
@@ -58,6 +69,20 @@ public class Errors extends Actions {
             return true;
         }
         return false;
+    }
+
+    public static void checkFiltersGenre(final ActionInput action,
+                                            ArrayList<MovieInput> crtMovies) {
+        if (!action.getFilters().getContains().getGenre().isEmpty()
+                || !action.getFilters().getContains().getActors().isEmpty()) {
+            return;
+        }
+
+        for (MovieInput movie : crtMovies) {
+            if (!movie.getGenres().contains(action.getFilters().getContains().getGenre())) {
+                crtMovies.remove(movie);
+            }
+        }
     }
 
 }

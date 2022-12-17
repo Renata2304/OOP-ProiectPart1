@@ -12,6 +12,8 @@ public class MovieInput {
     private int numLikes;
     private double rating;
     private int numRatings;
+    private boolean isPurchased;
+    private boolean isWatched;
 
     public String getName() {
         return name;
@@ -83,5 +85,21 @@ public class MovieInput {
 
     public void setNumRatings(final int numRatings) {
         this.numRatings = numRatings;
+    }
+
+    public boolean isPurchased() {
+        return isPurchased;
+    }
+
+    public void setPurchased(boolean purchased) {
+        isPurchased = purchased;
+    }
+
+    public boolean isWatched() {
+        return isWatched;
+    }
+
+    public void setWatched(boolean watched) {
+        isWatched = watched;
     }
 }

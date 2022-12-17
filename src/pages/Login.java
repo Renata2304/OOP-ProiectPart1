@@ -41,8 +41,8 @@ public class Login extends Page{
                 crtUser = user;
                 ObjectNode outputNode = output.addObject();
                 outputNode.putPOJO("error", null);
-                OutPrint.printCurrentUser(objectMapper, user, outputNode);
                 OutPrint.printCurrentMoviesList(crtMovies, outputNode);
+                OutPrint.printCurrentUser(objectMapper, user, outputNode);
 
                 break;
             }
