@@ -20,7 +20,7 @@ sure that everything is placed in the right structure.
     ActionInput class -> creates the fields necessary for all the parameters that can be received
         when getting the actions from input.
 
-pages package -> is used for implementing the pages and the actions that can be done on every one
+- pages package -> is used for implementing the pages and the actions that can be done on every one
 of them.
     Page class -> is the main page template that is going to be used for all the pages to extend.
     Login class -> used for the login on page and change page actions. Both of them will be
@@ -33,7 +33,7 @@ of them.
     SeeDetails class -> used for the change page -> see details action.
     Upgrades class -> used for the upgrades actions chose by the user.
 
-workflow package -> is used for the workflow itself. It is devided in three packages:
+- workflow package -> is used for the workflow itself. It is devided in three packages:
     Actions class -> used to go through all the actions that
     Errors class -> used for testing if there are any errors that may prevent the user from
         changing the page or from applying a feature.
